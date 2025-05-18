@@ -130,6 +130,78 @@
   }
 </style>
 
+
+<style>
+  .bottom-nav {
+    position: fixed;
+    left: 0;
+    right: 0;
+    background: #111;
+    height: 60px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid #444;
+    z-index: 999;
+  }
+
+  .bottom-nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    opacity: 0.7;
+  }
+
+  .bottom-nav a:hover {
+    transform: scale(1.25);
+    opacity: 1;
+  }
+
+  .bottom-nav a.active {
+    transform: translateY(3px);
+    opacity: 1;
+  }
+
+  #nav-user {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  /* Desktop: switch to top nav bar */
+  @media (min-width: 768px) {
+    .bottom-nav {
+      top: 0;
+      bottom: auto;
+      height: 70px;
+      justify-content: space-between;
+      padding: 0 40px;
+    }
+
+    .bottom-nav a {
+      font-size: 1.2em;
+      padding: 10px 16px;
+    }
+
+    #nav-user {
+      position: relative;
+      right: 0;
+      top: 0;
+      transform: none;
+      margin-left: auto;
+    }
+  }
+</style>
+
 </head>
 
 <body>
@@ -695,6 +767,78 @@
   }
 </style>
 
+
+<style>
+  .bottom-nav {
+    position: fixed;
+    left: 0;
+    right: 0;
+    background: #111;
+    height: 60px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid #444;
+    z-index: 999;
+  }
+
+  .bottom-nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    opacity: 0.7;
+  }
+
+  .bottom-nav a:hover {
+    transform: scale(1.25);
+    opacity: 1;
+  }
+
+  .bottom-nav a.active {
+    transform: translateY(3px);
+    opacity: 1;
+  }
+
+  #nav-user {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  /* Desktop: switch to top nav bar */
+  @media (min-width: 768px) {
+    .bottom-nav {
+      top: 0;
+      bottom: auto;
+      height: 70px;
+      justify-content: space-between;
+      padding: 0 40px;
+    }
+
+    .bottom-nav a {
+      font-size: 1.2em;
+      padding: 10px 16px;
+    }
+
+    #nav-user {
+      position: relative;
+      right: 0;
+      top: 0;
+      transform: none;
+      margin-left: auto;
+    }
+  }
+</style>
+
 </head>
 
 
@@ -870,138 +1014,316 @@
   });
 </script>
 
-</body>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>DreamFlux - Create</title>
-  <link rel="stylesheet" href="../assets/css/style.css">
-  <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6"></script>
 
 <style>
-  .card, .button, .input {
-    background: rgba(255, 255, 255, 0.05);
+  #hamburger {
+    display: none;
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    background: none;
+    border: none;
+    z-index: 1001;
+    font-size: 1.8rem;
     color: var(--text-color);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    padding: 12px;
-    margin: 8px 0;
-    transition: background 0.3s ease, color 0.3s ease;
-  }
-
-  [data-theme="light"] .card,
-  [data-theme="light"] .button,
-  [data-theme="light"] .input {
-    background: rgba(0, 0, 0, 0.05);
-    color: #111;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-  }
-
-  .button:hover {
-    background: rgba(255, 255, 255, 0.15);
-  }
-
-  [data-theme="light"] .button:hover {
-    background: rgba(0, 0, 0, 0.1);
-  }
-</style>
-
-
-<style>
-  .card, .button, .input {
-    background: rgba(255, 255, 255, 0.05);
-    color: var(--text-color);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    padding: 12px;
-    margin: 8px 0;
-    transition: background 0.3s ease, color 0.3s ease;
-  }
-
-  [data-theme="light"] .card,
-  [data-theme="light"] .button,
-  [data-theme="light"] .input {
-    background: rgba(0, 0, 0, 0.05);
-    color: #111;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-  }
-
-  .button:hover {
-    background: rgba(255, 255, 255, 0.15);
-  }
-
-  [data-theme="light"] .button:hover {
-    background: rgba(0, 0, 0, 0.1);
-  }
-</style>
-
-
-<style>
-  .no-animations * {
-    transition: none !important;
-    animation: none !important;
-  }
-</style>
-
-<style>
-  .model-card {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 12px;
-    padding: 16px;
-    color: var(--text-color);
-    font-family: sans-serif;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-align: center;
-  }
-
-  .model-card:hover {
-    transform: translateY(-6px) scale(1.02);
-    box-shadow: 0 6px 18px rgba(0,255,255,0.15);
-  }
-
-  [data-theme="light"] .model-card {
-    background: rgba(0,0,0,0.03);
-    border-color: rgba(0,0,0,0.05);
-  }
-</style>
-
-
-<style>
-  .model-card .card-actions {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 12px;
-  }
-
-  .model-card button {
-    background: transparent;
-    border: 1px solid #0ff;
-    color: #0ff;
-    padding: 6px 12px;
-    border-radius: 6px;
-    font-size: 0.8rem;
     cursor: pointer;
-    transition: background 0.3s ease, color 0.3s ease;
   }
 
-  .model-card button:hover {
-    background: #0ff;
-    color: black;
+  .side-nav {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: -240px;
+    width: 240px;
+    height: 100%;
+    background: #111;
+    padding: 60px 20px 20px;
+    z-index: 1000;
+    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.4);
+    transition: left 0.3s ease;
   }
 
-  [data-theme="light"] .model-card button {
-    border-color: #0072ff;
-    color: #0072ff;
-  }
-
-  [data-theme="light"] .model-card button:hover {
-    background: #0072ff;
+  .side-nav a {
     color: white;
+    text-decoration: none;
+    padding: 10px 0;
+    font-size: 1.1rem;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+  }
+
+  .side-nav a:hover {
+    opacity: 1;
+  }
+
+  .side-nav-footer {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    opacity: 0.7;
+  }
+
+  .side-nav-footer img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  @media (min-width: 768px) {
+    #hamburger {
+      display: block;
+    }
+  }
+
+  .side-nav.open {
+    left: 0;
   }
 </style>
 
-</head>
 
+<style>
+  #hamburger {
+    display: none;
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    background: none;
+    border: none;
+    z-index: 1001;
+    font-size: 1.8rem;
+    color: var(--text-color);
+    cursor: pointer;
+  }
+
+  .side-nav {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: -240px;
+    width: 240px;
+    height: 100%;
+    background: #111;
+    padding: 60px 20px 20px;
+    z-index: 1000;
+    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.4);
+    transition: left 0.3s ease;
+  }
+
+  .side-nav a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 0;
+    font-size: 1.1rem;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+  }
+
+  .side-nav a:hover {
+    opacity: 1;
+  }
+
+  .side-nav-footer {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    opacity: 0.7;
+  }
+
+  .side-nav-footer img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  @media (min-width: 768px) {
+    #hamburger {
+      display: block;
+    }
+  }
+
+  .side-nav.open {
+    left: 0;
+  }
+
+  .side-nav a {
+    transform: translateX(-20px);
+    opacity: 0;
+    animation: slideIn 0.4s ease forwards;
+  }
+
+  .side-nav.open a:nth-child(1) { animation-delay: 0.1s; }
+  .side-nav.open a:nth-child(2) { animation-delay: 0.2s; }
+  .side-nav.open a:nth-child(3) { animation-delay: 0.3s; }
+  .side-nav.open a:nth-child(4) { animation-delay: 0.4s; }
+
+  @keyframes slideIn {
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+</style>
+
+
+<style>
+  #hamburger {
+    display: none;
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    background: none;
+    border: none;
+    z-index: 1001;
+    font-size: 1.8rem;
+    color: var(--text-color);
+    cursor: pointer;
+  }
+
+  .side-nav {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: -240px;
+    width: 240px;
+    height: 100%;
+    background: #111;
+    padding: 60px 20px 20px;
+    z-index: 1000;
+    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.4);
+    transition: left 0.3s ease;
+  }
+
+  .side-nav a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 0;
+    font-size: 1.1rem;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+  }
+
+  .side-nav a:hover {
+    opacity: 1;
+  }
+
+  .side-nav-footer {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    opacity: 0.7;
+  }
+
+  .side-nav-footer img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  @media (min-width: 768px) {
+    #hamburger {
+      display: block;
+    }
+  }
+
+  .side-nav.open {
+    left: 0;
+  }
+
+  .side-nav a {
+    transform: translateX(-20px);
+    opacity: 0;
+    animation: slideIn 0.4s ease forwards;
+  }
+
+  .side-nav.open a:nth-child(1) { animation-delay: 0.1s; }
+  .side-nav.open a:nth-child(2) { animation-delay: 0.2s; }
+  .side-nav.open a:nth-child(3) { animation-delay: 0.3s; }
+  .side-nav.open a:nth-child(4) { animation-delay: 0.4s; }
+
+  @keyframes slideIn {
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  .hamburger-icon {
+    width: 30px;
+    height: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    z-index: 1001;
+  }
+
+  .hamburger-icon span {
+    height: 3px;
+    width: 100%;
+    background: var(--text-color);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+  }
+
+  .hamburger-icon.open span:nth-child(1) {
+    transform: rotate(45deg) translateY(9px);
+  }
+  .hamburger-icon.open span:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger-icon.open span:nth-child(3) {
+    transform: rotate(-45deg) translateY(-9px);
+  }
+</style>
+
+
+<button id="hamburger" class="hamburger-icon" aria-label="Toggle menu">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+
+<nav class="side-nav" id="side-nav">
+  <a href="/">Home</a>
+  <a href="/create">Create</a>
+  <a href="/profile">Profile</a>
+  <a href="/settings">Settings</a>
+  <div class="side-nav-footer">
+    <img id="side-avatar" src="assets/images/profile.jpg" />
+    <span id="side-username"></span>
+  </div>
+</nav>
+
+<script>
+  
+  const hamburger = document.getElementById("hamburger");
+  hamburger.addEventListener("click", () => {
+    document.getElementById("side-nav").classList.toggle("open");
+    hamburger.classList.toggle("open");
+
+    document.getElementById("side-nav").classList.toggle("open");
+  });
+
+  window.addEventListener("DOMContentLoaded", () => {
+    const uname = localStorage.getItem("username");
+    const avatar = localStorage.getItem("avatar");
+    if (uname) document.getElementById("side-username").textContent = uname;
+    if (avatar) document.getElementById("side-avatar").src = avatar;
+  });
+</script>
 </body>
