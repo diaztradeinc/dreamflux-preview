@@ -186,27 +186,7 @@
     to { opacity: 0.1; }
   }
 </style>
-<nav class="bottom-nav">
-  <a href="/" id="nav-home" title="Home"><i data-lucide="home"></i></a>
-  <a href="/create" id="nav-create" title="Create"><i data-lucide="wand-2"></i></a>
-  <a href="/profile" id="nav-profile" title="Profile"><i data-lucide="image"></i></a>
-  <a href="/settings" id="nav-settings" title="Settings"><i data-lucide="settings"></i></a>
 
-  <div id="nav-user" style="position:absolute; right:16px; top:-4px; display:flex; align-items:center; gap:8px;">
-    <span id="nav-username" style="font-size:0.9rem; opacity:0.8;"></span>
-    <img id="nav-avatar" src="assets/images/profile.jpg" alt="Avatar" style="width:30px;height:30px;border-radius:50%;object-fit:cover;" />
-  </div>
-
-  <div id="nav-user" style="position:absolute; right:16px; top:-4px; display:flex; align-items:center; gap:8px; cursor:pointer;">
-    <span id="nav-username" style="font-size:0.9rem; opacity:0.8;"></span>
-    <img id="nav-avatar" src="assets/images/profile.jpg" alt="Avatar" style="width:30px;height:30px;border-radius:50%;object-fit:cover;" />
-    <div id="user-dropdown" style="display:none; position:absolute; bottom:50px; right:0; background:#222; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.5); padding:8px; font-size:0.85rem; z-index:1000;">
-      <a href="/profile" style="display:block; padding:6px 12px; color:white; text-decoration:none;">👤 Profile</a>
-      <a href="/settings" style="display:block; padding:6px 12px; color:white; text-decoration:none;">⚙️ Settings</a>
-      <a href="#" onclick="logoutUser()" style="display:block; padding:6px 12px; color:#f55; text-decoration:none;">🚪 Log Out</a>
-    </div>
-  </div>
-</nav>
 <script>
   const uname = localStorage.getItem("username");
   const avatar = localStorage.getItem("avatar");
