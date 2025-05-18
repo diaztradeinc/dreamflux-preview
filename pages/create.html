@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Create - DreamFlux</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <header class="top-bar">
+    <div style="text-align:right; padding:4px 12px;">Credits: <span id="credit-counter">20</span></div>
+  </header>
+
+  <main>
+    <!-- Search and Tag Filters -->
+    <section class="card" style="margin-bottom: 10px;">
+      <input type="text" id="model-search" placeholder="Search models..." style="width: 100%; padding: 8px; margin-bottom: 10px;" />
+      <div id="model-tags" style="display: flex; flex-wrap: wrap; gap: 8px;"></div>
+    </section>
+
+    <!-- Recently Used -->
+    <section class="card">
+      <h3>🕓 Recently Used</h3>
+      <div id="recent-carousel" class="model-scroll" style="overflow-x:auto;display:flex;gap:12px;"></div>
+    </section>
+
+    <!-- Dynamic Model Carousel -->
+    <section class="card">
+      <h3>Select a Model</h3>
+      <div id="model-carousel" class="model-scroll" style="overflow-x: auto; display: flex; gap: 12px;"></div>
+    </section>
+
+    <!-- Prompt Inputs -->
+    <section class="card" style="margin-top:20px;">
+      <h3>Your Prompt</h3>
+      <textarea id="prompt-input" placeholder="A cyberpunk samurai riding a glowing tiger through the rain..."></textarea>
+      <textarea id="negative-prompt" placeholder="Negative Prompt (e.g., blurry, low quality)"></textarea>
+    </section>
+
+    <!-- Advanced Options -->
+    <details class="card" style="margin-top: 20px;">
+      <summary style="font-weight: bold; cursor: pointer;">⚙️ Advanced Options</summary>
+      <div style="margin-top: 12px;">
+        <label>Steps (10–50):</label>
+        <input type="number" id="steps-input" min="10" max="50" value="30" style="width: 100%; margin-bottom: 10px;" />
+        <label>CFG Scale (1–20):</label>
+        <input type="number" id="cfg-scale-input" min="1" max="20" value="7" style="width: 100%; margin-bottom: 10px;" />
+        <label>Samples (1–4):</label>
+        <input type="number" id="samples-input" min="1" max="4" value="1" style="width: 100%; margin-bottom: 10px;" />
+        <label>Aspect Ratio:</label>
+        <select id="aspect-ratio-select" style="width: 100%; margin-bottom: 10px;">
+          <option value="portrait">Portrait</option>
+          <option value="square">Square</option>
+          <option value="landscape">Landscape</option>
+        </select>
+        <label>Upscale:</label>
+        <select id="upscale-select" style="width: 100%; margin-bottom: 10px;">
+          <option value="">None</option>
+          <option value="1.5x">1.5x</option>
+          <option value="2x">2x</option>
+          <option value="4x">4x</option>
+        </select>
+      </div>
+    </details>
+
+    <!-- Generate Button -->
+    <section style="text-align:center;">
+      <button class="btn-primary" style="margin-top:20px;" onclick="generateImage()">
+        <i data-lucide="wand-2" class="icon" style="vertical-align:middle;"></i>
+        <span style="margin-left:8px;">Start Drawing</span>
+      </button>
+    </section>
+  </main>
+
+  <!-- Spotlight Viewer Modal (Model Preview) -->
+  <div id="model-preview" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); z-index:1000; justify-content:center; align-items:center;">
+    <div class="preview-inner" style="background:#111; border-radius:12px; padding:20px; max-width:480px; width:90%; color:#fff; position:relative;">
+      <button onclick="closePreview()" style="position:absolute; top:10px; right:12px; background:none; border:none; color:white; font-size:1.5em; cursor:pointer;">✖</button>
+      <img id="preview-image" src="" style="width:100%; border-radius:10px; margin-bottom:16px;" />
+      <h2 id="preview-title"></h2>
+      <p id="preview-tags" style="font-size:0.85em; opacity:0.8;"></p>
+      <p id="preview-desc" style="font-size:0.9em; margin-top:12px;"></p>
+      <button id="select-model-btn" class="btn-primary" style="margin-top:16px; width:100%;">Use This Model</button>
+    </div>
+  </div>
+
+  <nav class="bottom-nav">
+    <a href="../index.html"><i data-lucide="home" class="icon"></i>Home</a>
+    <a href="create.html"><i data-lucide="sparkles" class="icon"></i>Create</a>
+    <a href="settings.html"><i data-lucide="settings" class="icon"></i>Settings</a>
+    <a href="profile.html"><i data-lucide="user" class="icon"></i>Profile</a>
+  </nav>
+
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+  <script src="../assets/js/app.js"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>
