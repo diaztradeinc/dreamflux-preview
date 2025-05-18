@@ -1,1 +1,77 @@
-<h1>Discover</h1>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Discover</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<style>
+  .card, .button, .input {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-color);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 12px;
+    margin: 8px 0;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+  [data-theme="light"] .card,
+  [data-theme="light"] .button,
+  [data-theme="light"] .input {
+    background: rgba(0, 0, 0, 0.05);
+    color: #111;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .button:hover {
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  [data-theme="light"] .button:hover {
+    background: rgba(0, 0, 0, 0.1);
+  }
+</style>
+
+</head>
+<body>
+  <div id="discover-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin:40px;">
+    <!-- Discover model cards will be inserted here -->
+    <div class="model-card card" data-category="Anime" data-nsfw="false">Anime Model 1</div>
+    <div class="model-card card" data-category="Artistic" data-nsfw="true">Artistic NSFW Model</div>
+    <div class="model-card card" data-category="Photorealistic" data-nsfw="false">Realistic Model</div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const defaultCategory = localStorage.getItem("defaultCategory");
+      const enableAnimations = localStorage.getItem("enableAnimations") === "true";
+      const showNSFW = localStorage.getItem("showNSFW") === "true";
+
+      if (!enableAnimations) {
+        document.body.classList.add("no-animations");
+      }
+
+      const cards = document.querySelectorAll(".model-card");
+      cards.forEach(card => {
+        const cat = card.dataset.category;
+        const nsfw = card.dataset.nsfw === "true";
+        if (defaultCategory && cat !== defaultCategory) {
+          card.style.display = "none";
+        }
+        if (!showNSFW && nsfw) {
+          card.style.display = "none";
+        }
+      });
+    });
+  </script>
+
+  <style>
+    .no-animations * {
+      transition: none !important;
+      animation: none !important;
+    }
+  </style>
+</body>
+</html>

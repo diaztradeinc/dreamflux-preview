@@ -39,12 +39,111 @@
   <div class="card" style="max-width: 600px; margin: 60px auto; text-align: center;">
     <label>
       <input type="file" id="avatar-upload" accept="image/*" style="display:none" />
-      <img src="assets/images/profile.jpg" alt="User Avatar"
+      <img id="avatar-preview" src="assets/images/profile.jpg" alt="User Avatar"
         style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 12px; cursor:pointer;"
         onclick="document.getElementById('avatar-upload').click();" />
     </label>
-    <input type="text" class="input" placeholder="Username" style="width:80%; margin: 12px auto;" />
-    <button class="button" style="width:60%;">Save</button>
+    <input type="text" class="input" id="username-input" placeholder="Username" style="width:80%; margin: 12px auto;" />
+    <button class="button" onclick="saveProfile()" style="width:60%;">Save</button>
+    <p id="profile-msg" style="font-size: 0.9rem; opacity: 0.7; margin-top: 6px;"></p>
   </div>
+
+  <script>
+    const avatarInput = document.getElementById("avatar-upload");
+    const avatarPreview = document.getElementById("avatar-preview");
+    const usernameInput = document.getElementById("username-input");
+
+    function saveProfile() {
+      const username = usernameInput.value.trim();
+      localStorage.setItem("username", username);
+      document.getElementById("profile-msg").innerText = "Profile saved!";
+    }
+
+    avatarInput.addEventListener("change", () => {
+      const file = avatarInput.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          avatarPreview.src = reader.result;
+          localStorage.setItem("avatar", reader.result);
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // Load profile from localStorage
+    window.addEventListener("DOMContentLoaded", () => {
+      const storedName = localStorage.getItem("username");
+      const storedAvatar = localStorage.getItem("avatar");
+      if (storedName) usernameInput.value = storedName;
+      if (storedAvatar) avatarPreview.src = storedAvatar;
+    });
+  </script>
 </body>
 </html>
+
+<!-- Lucide Icon Navigation -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: #111;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid #444;
+    z-index: 999;
+  }
+  .bottom-nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    opacity: 0.7;
+  }
+  .bottom-nav a:hover {
+    transform: scale(1.25);
+    opacity: 1;
+  }
+  .bottom-nav a.active {
+    transform: translateY(3px);
+    opacity: 1;
+  }
+</style>
+<nav class="bottom-nav">
+  <a href="/" id="nav-home" title="Home"><i data-lucide="home"></i></a>
+  <a href="/create" id="nav-create" title="Create"><i data-lucide="wand-2"></i></a>
+  <a href="/profile" id="nav-profile" title="Profile"><i data-lucide="image"></i></a>
+  <a href="/settings" id="nav-settings" title="Settings"><i data-lucide="settings"></i></a>
+
+  <div id="nav-user" style="position:absolute; right:16px; top:-4px; display:flex; align-items:center; gap:8px;">
+    <span id="nav-username" style="font-size:0.9rem; opacity:0.8;"></span>
+    <img id="nav-avatar" src="assets/images/profile.jpg" alt="Avatar" style="width:30px;height:30px;border-radius:50%;object-fit:cover;" />
+  </div>
+</nav>
+<script>
+  window.addEventListener("DOMContentLoaded", function() {
+    
+    lucide.createIcons();
+
+    // Show saved user avatar and name
+    const uname = localStorage.getItem("username");
+    const avatar = localStorage.getItem("avatar");
+    if (uname) document.getElementById("nav-username").textContent = uname;
+    if (avatar) document.getElementById("nav-avatar").src = avatar;
+
+    const path = window.location.pathname;
+    if (path.includes("create")) document.getElementById("nav-create").classList.add("active");
+    else if (path.includes("profile")) document.getElementById("nav-profile").classList.add("active");
+    else if (path.includes("settings")) document.getElementById("nav-settings").classList.add("active");
+    else document.getElementById("nav-home").classList.add("active");
+  });
+</script>

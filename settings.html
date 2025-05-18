@@ -39,23 +39,115 @@
   <div class="card" style="max-width: 600px; margin: 60px auto;">
     <h2>Settings</h2>
     <label class="input">Theme:
-      <select class="input" style="width: 100%; margin-top: 5px;">
+      <select id="theme-select" class="input" style="width: 100%; margin-top: 5px;">
         <option value="dark">Dark</option>
         <option value="light">Light</option>
       </select>
     </label>
     <label class="input">Default Model Category:
-      <select class="input" style="width: 100%; margin-top: 5px;">
+      <select id="category-select" class="input" style="width: 100%; margin-top: 5px;">
         <option value="Photorealistic">Photorealistic</option>
         <option value="Anime">Anime</option>
         <option value="Artistic">Artistic</option>
       </select>
     </label>
     <div class="input">
-      <label><input type="checkbox" checked /> Show NSFW Models</label><br>
-      <label><input type="checkbox" /> Enable Page Animations</label>
+      <label><input type="checkbox" id="nsfw-toggle" /> Show NSFW Models</label><br>
+      <label><input type="checkbox" id="animation-toggle" /> Enable Page Animations</label>
     </div>
-    <button class="button" style="width:100%; margin-top:12px;">Save Preferences</button>
+    <button class="button" style="width:100%; margin-top:12px;" onclick="saveSettings()">Save Preferences</button>
+    <p id="status-msg" style="font-size: 0.9rem; opacity: 0.7; margin-top: 6px;"></p>
   </div>
+
+  <script>
+    function saveSettings() {
+      const theme = document.getElementById("theme-select").value;
+      const category = document.getElementById("category-select").value;
+      const nsfw = document.getElementById("nsfw-toggle").checked;
+      const animate = document.getElementById("animation-toggle").checked;
+
+      localStorage.setItem("theme", theme);
+      localStorage.setItem("defaultCategory", category);
+      localStorage.setItem("showNSFW", nsfw);
+      localStorage.setItem("enableAnimations", animate);
+
+      document.documentElement.setAttribute("data-theme", theme);
+      document.getElementById("status-msg").innerText = "Preferences saved!";
+    }
+
+    // Apply stored settings
+    window.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("theme-select").value = localStorage.getItem("theme") || "dark";
+      document.getElementById("category-select").value = localStorage.getItem("defaultCategory") || "Photorealistic";
+      document.getElementById("nsfw-toggle").checked = localStorage.getItem("showNSFW") === "true";
+      document.getElementById("animation-toggle").checked = localStorage.getItem("enableAnimations") === "true";
+    });
+  </script>
 </body>
 </html>
+
+<!-- Lucide Icon Navigation -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: #111;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid #444;
+    z-index: 999;
+  }
+  .bottom-nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    opacity: 0.7;
+  }
+  .bottom-nav a:hover {
+    transform: scale(1.25);
+    opacity: 1;
+  }
+  .bottom-nav a.active {
+    transform: translateY(3px);
+    opacity: 1;
+  }
+</style>
+<nav class="bottom-nav">
+  <a href="/" id="nav-home" title="Home"><i data-lucide="home"></i></a>
+  <a href="/create" id="nav-create" title="Create"><i data-lucide="wand-2"></i></a>
+  <a href="/profile" id="nav-profile" title="Profile"><i data-lucide="image"></i></a>
+  <a href="/settings" id="nav-settings" title="Settings"><i data-lucide="settings"></i></a>
+
+  <div id="nav-user" style="position:absolute; right:16px; top:-4px; display:flex; align-items:center; gap:8px;">
+    <span id="nav-username" style="font-size:0.9rem; opacity:0.8;"></span>
+    <img id="nav-avatar" src="assets/images/profile.jpg" alt="Avatar" style="width:30px;height:30px;border-radius:50%;object-fit:cover;" />
+  </div>
+</nav>
+<script>
+  window.addEventListener("DOMContentLoaded", function() {
+    
+    lucide.createIcons();
+
+    // Show saved user avatar and name
+    const uname = localStorage.getItem("username");
+    const avatar = localStorage.getItem("avatar");
+    if (uname) document.getElementById("nav-username").textContent = uname;
+    if (avatar) document.getElementById("nav-avatar").src = avatar;
+
+    const path = window.location.pathname;
+    if (path.includes("create")) document.getElementById("nav-create").classList.add("active");
+    else if (path.includes("profile")) document.getElementById("nav-profile").classList.add("active");
+    else if (path.includes("settings")) document.getElementById("nav-settings").classList.add("active");
+    else document.getElementById("nav-home").classList.add("active");
+  });
+</script>
