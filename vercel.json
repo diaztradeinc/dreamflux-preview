@@ -1,0 +1,12 @@
+
+{
+  "rewrites": [
+    { "source": "/", "destination": "/home.html" },
+    { "source": "/discover", "destination": "/discover.html" },
+    { "source": "/create", "destination": "/create.html" },
+    { "source": "/settings", "destination": "/settings.html" },
+    { "source": "/profile", "destination": "/profile.html" },
+    { "source": "/loading", "destination": "/loading.html" },
+    { "source": "/result", "destination": "/result.html" }
+  ]
+}
