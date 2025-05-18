@@ -1,12 +1,6 @@
-
 {
   "rewrites": [
-    { "source": "/", "destination": "/home.html" },
-    { "source": "/discover", "destination": "/discover.html" },
-    { "source": "/create", "destination": "/create.html" },
-    { "source": "/settings", "destination": "/settings.html" },
-    { "source": "/profile", "destination": "/profile.html" },
-    { "source": "/loading", "destination": "/loading.html" },
-    { "source": "/result", "destination": "/result.html" }
+    { "source": "/generate", "destination": "https://your-backend-url.onrailway.app/generate" },
+    { "source": "/model-thumbnail/:id", "destination": "https://your-backend-url.onrailway.app/model-thumbnail/:id" }
   ]
 }
