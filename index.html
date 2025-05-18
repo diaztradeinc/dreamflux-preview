@@ -1,66 +1,84 @@
 
-<script>
-  lucide.createIcons();
-  const path = window.location.pathname;
-  if (path.includes("create")) document.getElementById("nav-create").classList.add("active");
-  else if (path.includes("profile")) document.getElementById("nav-profile").classList.add("active");
-  else if (path.includes("settings")) document.getElementById("nav-settings").classList.add("active");
-  else document.getElementById("nav-home").classList.add("active");
-</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>DreamFlux</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #0d0d0d;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      transition: filter 1s ease;
+    }
 
+    .logo-container {
+      text-align: center;
+      animation: popfade 2s ease-in-out forwards;
+    }
 
-<!-- Lucide Icon Navigation -->
-<script src="https://unpkg.com/lucide@latest"></script>
-<style>
-  .bottom-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
-    background: #111;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    border-top: 1px solid #444;
-    z-index: 999;
-  }
-  .bottom-nav a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.5em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    transition: transform 0.2s ease, opacity 0.2s ease;
-    opacity: 0.7;
-  }
-  .bottom-nav a:hover {
-    transform: scale(1.25);
-    opacity: 1;
-  }
-  .bottom-nav a.active {
-    transform: translateY(3px);
-    opacity: 1;
-  }
-</style>
-<nav class="bottom-nav">
-  <a href="/" id="nav-home" title="Home"><i data-lucide="home"></i></a>
-  <a href="/create" id="nav-create" title="Create"><i data-lucide="wand-2"></i></a>
-  <a href="/profile" id="nav-profile" title="Profile"><i data-lucide="image"></i></a>
-  <a href="/settings" id="nav-settings" title="Settings"><i data-lucide="settings"></i></a>
-</nav>
-<script>
-  window.addEventListener("DOMContentLoaded", function() {
-    lucide.createIcons();
-    const path = window.location.pathname;
-    if (path.includes("create")) document.getElementById("nav-create").classList.add("active");
-    else if (path.includes("profile")) document.getElementById("nav-profile").classList.add("active");
-    else if (path.includes("settings")) document.getElementById("nav-settings").classList.add("active");
-    else document.getElementById("nav-home").classList.add("active");
-  });
-</script>
+    .logo-container img {
+      width: 120px;
+      height: auto;
+      animation: pulse 2s infinite;
+    }
 
+    .logo-text {
+      margin-top: 10px;
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+      opacity: 0.9;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 5px #fff);
+      }
+      50% {
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 20px #00ffff);
+      }
+    }
+
+    @keyframes popfade {
+      0% {
+        opacity: 0;
+        transform: scale(0.5);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="logo-container">
+    <img src="assets/images/DreamFluxHeader.png" alt="DreamFlux Logo" />
+    <div class="logo-text">DreamFlux</div>
+  </div>
+
+  <audio id="intro-sound" autoplay>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_fcd5a64b1e.mp3?filename=magical-transition-108384.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const sound = document.getElementById("intro-sound");
+    setTimeout(() => {
+      document.body.style.filter = "blur(10px)";
+    }, 1500);
+    setTimeout(() => {
+      window.location.href = "home.html";
+    }, 2200);
+  </script>
 </body>
 </html>

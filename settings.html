@@ -1,66 +1,49 @@
 
-<script>
-  lucide.createIcons();
-  const path = window.location.pathname;
-  if (path.includes("create")) document.getElementById("nav-create").classList.add("active");
-  else if (path.includes("profile")) document.getElementById("nav-profile").classList.add("active");
-  else if (path.includes("settings")) document.getElementById("nav-settings").classList.add("active");
-  else document.getElementById("nav-home").classList.add("active");
-</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Settings - DreamFlux</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <header class="top-bar">Settings</header>
+  <main style="padding: 20px;">
+    <div class="card">
+      <h3><i data-lucide="wand-2" class="icon"></i> Generation Settings</h3>
+      <label>
+        <input type="checkbox" checked /> Restore Faces
+      </label><br/>
+      <label>
+        <input type="checkbox" checked /> High-Res Mode
+      </label>
+    </div>
 
+    <div class="card" style="margin-top:20px;">
+      <h3><i data-lucide="moon" class="icon"></i> Appearance</h3>
+      <label>
+        <input type="checkbox" /> Enable HUD Theme
+      </label><br/>
+      <label>
+        <input type="checkbox" /> Show Tooltips
+      </label>
+    </div>
 
-<!-- Lucide Icon Navigation -->
-<script src="https://unpkg.com/lucide@latest"></script>
-<style>
-  .bottom-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
-    background: #111;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    border-top: 1px solid #444;
-    z-index: 999;
-  }
-  .bottom-nav a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.5em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    transition: transform 0.2s ease, opacity 0.2s ease;
-    opacity: 0.7;
-  }
-  .bottom-nav a:hover {
-    transform: scale(1.25);
-    opacity: 1;
-  }
-  .bottom-nav a.active {
-    transform: translateY(3px);
-    opacity: 1;
-  }
-</style>
-<nav class="bottom-nav">
-  <a href="/" id="nav-home" title="Home"><i data-lucide="home"></i></a>
-  <a href="/create" id="nav-create" title="Create"><i data-lucide="wand-2"></i></a>
-  <a href="/profile" id="nav-profile" title="Profile"><i data-lucide="image"></i></a>
-  <a href="/settings" id="nav-settings" title="Settings"><i data-lucide="settings"></i></a>
-</nav>
-<script>
-  window.addEventListener("DOMContentLoaded", function() {
-    lucide.createIcons();
-    const path = window.location.pathname;
-    if (path.includes("create")) document.getElementById("nav-create").classList.add("active");
-    else if (path.includes("profile")) document.getElementById("nav-profile").classList.add("active");
-    else if (path.includes("settings")) document.getElementById("nav-settings").classList.add("active");
-    else document.getElementById("nav-home").classList.add("active");
-  });
-</script>
+    <div class="card" style="margin-top:20px;">
+      <h3><i data-lucide="trash-2" class="icon"></i> Data</h3>
+      <button class="btn-primary">Reset App</button>
+    </div>
+  </main>
 
+  <nav class="bottom-nav">
+    <a href="../index.html"><i data-lucide="home" class="icon"></i>Home</a>
+    <a href="create.html"><i data-lucide="sparkles" class="icon"></i>Create</a>
+    <a href="settings.html"><i data-lucide="settings" class="icon"></i>Settings</a>
+    <a href="profile.html"><i data-lucide="user" class="icon"></i>Profile</a>
+  </nav>
+
+  <script>lucide.createIcons();</script>
 </body>
 </html>
