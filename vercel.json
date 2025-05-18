@@ -1,6 +1,0 @@
-{
-  "rewrites": [
-    { "source": "/generate", "destination": "https://your-backend-url.onrailway.app/generate" },
-    { "source": "/model-thumbnail/:id", "destination": "https://your-backend-url.onrailway.app/model-thumbnail/:id" }
-  ]
-}
