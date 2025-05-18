@@ -6,6 +6,10 @@
   <title>DreamFlux</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
+    .fade-out {
+      opacity: 0;
+      transition: opacity 0.6s ease-out;
+    }
     body {
       margin: 0;
       padding: 0;
@@ -85,8 +89,16 @@
 <body>
   <div class="background-blur" id="blur-layer"></div>
   <div class="overlay">
-    <img src="assets/images/DreamFluxHeader.png" alt="DreamFlux Logo" />
+    
+    <div class="logo-wrapper">
+      <div class="circle-loader"></div>
+      <img src="assets/images/DreamFluxHeader.png" alt="DreamFlux Logo" />
+    </div>
+
+    
     <div class="logo-text">DreamFlux</div>
+    <div id="progress" style="margin-top:10px; font-size:1rem; color:#0ff; opacity:0.8;">Loading... 0%</div>
+
   </div>
 
   <audio id="intro-sound" autoplay>
@@ -98,8 +110,26 @@
       document.getElementById("blur-layer").classList.add("blurred");
     }, 1500);
     setTimeout(() => {
+      
+    document.body.classList.add("fade-out");
+    setTimeout(() => {
       window.location.href = "home.html";
+    }, 600);
+
     }, 3500);
-  </script>
+  
+    let percent = 0;
+    const progressEl = document.getElementById("progress");
+    const interval = setInterval(() => {
+      percent += 2;
+      progressEl.textContent = `Loading... ${percent}%`;
+      if (percent >= 100) {
+        clearInterval(interval);
+        progressEl.textContent = "Done!";
+      }
+    }, 70);  // syncs to roughly 3.5s
+
+</script>
+
 </body>
 </html>
