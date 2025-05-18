@@ -12,8 +12,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Load models.json
   try {
     const res = await fetch("models.json");
-    models = await res.json();
-  } catch (err) {
+
+    console.log("Fetching models.json...");    models = await res.json();
+
+    console.log("Loaded models:", models);  } catch (err) {
     console.error("Failed to load models.json", err);
     return;
   }
